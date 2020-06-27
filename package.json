@@ -1,0 +1,32 @@
+{
+  "name": "C4C",
+  "version": "1.0.0",
+  "description": "Code for Canada Challenge 2020",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttfreeman/C4C.git"
+  },
+  "keywords": [],
+  "author": "Tony Freeman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ttfreeman/C4C/issues"
+  },
+  "homepage": "https://github.com/ttfreeman/C4C#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "shuffle-seed": "^1.1.6"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "nodemon": "2.0.4"
+  }
+}
