@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ttfreeman/C4C#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "lodash": "^4.17.15",
     "shuffle-seed": "^1.1.6"
   },
