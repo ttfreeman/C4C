@@ -7,12 +7,26 @@ const partial_url = "/api/recent/";
 const lang = "en";
 
 const apiCall = async () => {
-  const response = await API.getData(base_url, partial_url, lang);
+  // const recent = await API.getData(base_url, partial_url, lang);
+  // // console.log("Recent data= ", recent.data.results);
 
-  console.log("API response= ", response.data);
+  // const id = recent.data.results.ALL[3].recallId;
+  // const details = await API.getDetails(base_url, id, lang);
+  // console.log("Details data= ", details.data);
+
+  const searchResults = await API.getSearch(
+    base_url,
+    searchText,
+    lang,
+    category,
+    limit,
+    offset
+  );
+  console.log("Search data= ", searchResults.data);
 };
 
 apiCall();
+
 // let { data } = loadCSV("./data/C4C-dev-challenge-2018.csv", {
 //   dataColumns: [
 //     "violation_category",

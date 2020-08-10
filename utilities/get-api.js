@@ -12,7 +12,7 @@ module.exports = {
   getDetails: (base_url, id, lang) =>
     axios({
       method: "GET",
-      url: base_url + "/api/" + id + lang,
+      url: base_url + "/api/" + id + "/" + lang,
       headers: {
         "content-type": "application/x-www-form-urlencoded",
       },
