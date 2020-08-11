@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 module.exports = {
-  getData: (base_url, partial_url, lang) =>
+  getRecent: (base_url, partial_url, lang) =>
     axios({
       method: "GET",
       url: base_url + partial_url + lang,

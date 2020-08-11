@@ -1,55 +1,20 @@
-const loadCSV = require("./utilities/load-csv");
-const DataAnalysis = require("./utilities/data-analysis");
-const API = require("./utilities/get-api");
+const path = require("path");
+const express = require("express");
+const hbs = require("hbs");
 
-const base_url = "http://healthycanadians.gc.ca/recall-alert-rappel-avis";
-const partial_url = "/api/recent/";
-const lang = "en";
+const app = express();
+const recallsRouter = require("./routers/appRouter");
+const apiRouter = require("./routers/apiRouter");
 
-const apiCall = async () => {
-  // const recent = await API.getData(base_url, partial_url, lang);
-  // // console.log("Recent data= ", recent.data.results);
+const publicDirPath = path.join(__dirname, "./public");
 
-  // const id = recent.data.results.ALL[3].recallId;
-  // const details = await API.getDetails(base_url, id, lang);
-  // console.log("Details data= ", details.data);
+app.set("view engine", "html");
+app.engine("html", require("hbs").__express);
 
-  const searchResults = await API.getSearch(
-    base_url,
-    searchText,
-    lang,
-    category,
-    limit,
-    offset
-  );
-  console.log("Search data= ", searchResults.data);
-};
+app.use(express.json());
+app.use(express.static(publicDirPath));
+app.use(recallsRouter);
+app.use(apiRouter);
 
-apiCall();
-
-// let { data } = loadCSV("./data/C4C-dev-challenge-2018.csv", {
-//   dataColumns: [
-//     "violation_category",
-//     "violation_date",
-//     "violation_date_closed",
-//     "violation_type",
-//   ],
-//   shuffle: false,
-// });
-
-// const analysis = new DataAnalysis(data);
-
-// analysis.getUniqueCategories();
-
-// const violationPerCategory = analysis.numberOfViolationsPerCategory(data);
-
-// const timeRangePerCategory = analysis.earliestLatestViolationPerCategory(data);
-
-// console.log(
-//   "\n*** Printing total violations in each category ***\n",
-//   violationPerCategory
-// );
-// console.log(
-//   "\n*** Printing time range of violations in each category ***\n",
-//   timeRangePerCategory
-// );
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("C4C app listening on " + PORT));

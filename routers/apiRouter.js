@@ -1,0 +1,37 @@
+const express = require("express");
+const router = new express.Router();
+
+const API = require("../utilities/get-api");
+
+const base_url = "http://healthycanadians.gc.ca/recall-alert-rappel-avis";
+const lang = "en";
+
+router.get("/api/recent", async (req, res) => {
+  const partial_url = "/api/recent/";
+  const recent = await API.getRecent(base_url, partial_url, lang);
+  console.log(base_url, partial_url, lang);
+  res.status(200).send({ data: recent.data.results });
+});
+
+router.get("/api/details/:id", async (req, res) => {
+  const id = req.params.id;
+  const details = await API.getDetails(base_url, id, lang);
+  console.log(details.data);
+  res.status(200).send({ data: details.data });
+});
+
+router.get("/api/search", async (req, res) => {
+  const searchText = "vegetable";
+  const searchResults = await API.getSearch(
+    base_url,
+    searchText,
+    lang
+    // category,
+    // limit,
+    // offset
+  );
+  console.log("Search results= ", searchResults.data);
+  res.status(200).send({ data: recent.data.results });
+});
+
+module.exports = router;

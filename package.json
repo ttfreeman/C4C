@@ -1,10 +1,11 @@
 {
-  "name": "C4C",
+  "name": "c4c",
   "version": "1.0.0",
   "description": "Code for Canada Challenge 2020",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "jest"
   },
   "jest": {
@@ -23,6 +24,8 @@
   "homepage": "https://github.com/ttfreeman/C4C#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
     "lodash": "^4.17.19",
     "shuffle-seed": "^1.1.6"
   },
