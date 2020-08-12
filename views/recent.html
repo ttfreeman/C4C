@@ -7,7 +7,27 @@
   </head>
   <body>
     <h1>Recent page</h1>
+    <select id="select-cat">
+      <option value="0">ALL</option>
+      <option value="1">FOOD</option>
+      <option value="2">VEHICLE</option>
+      <option value="3">HEALTH</option>
+      <option value="4">CPS</option>
+    </select>
     <button id="get-recent">Get Recent Recalls</button>
     <a href="/">Main Page</a>
+    <table>
+      <thead>
+        <tr>
+          <th>recallId</th>
+          <th>title</th>
+          <th>category</th>
+          <th>date published</th>
+          <th>url</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    <script type="text/javascript" src="/recent.js"></script>
   </body>
 </html>

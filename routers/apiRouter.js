@@ -8,9 +8,12 @@ const lang = "en";
 
 router.get("/api/recent", async (req, res) => {
   const partial_url = "/api/recent/";
-  const recent = await API.getRecent(base_url, partial_url, lang);
-  console.log(base_url, partial_url, lang);
-  res.status(200).send({ data: recent.data.results });
+  try {
+    const recent = await API.getRecent(base_url, partial_url, lang);
+    res.status(200).send({ data: recent.data.results });
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 router.get("/api/details/:id", async (req, res) => {
