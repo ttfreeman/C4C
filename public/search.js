@@ -1,11 +1,12 @@
 var searchForm = document.getElementById("search-form");
+var selectCat = document.getElementById("select-cat");
+
 function canSubmit(form) {
   if (
     searchForm.searchtext.value != null &&
     searchForm.searchtext.value != ""
   ) {
     var search = searchForm.searchtext.value;
-    var selectCat = document.getElementById("select-cat");
     var category = selectCat.options[selectCat.selectedIndex].value;
 
     var url = `http://localhost:3000/api/search?search=${search}&cat=${category}`;
@@ -18,7 +19,13 @@ searchForm.onsubmit = function () {
   return canSubmit(searchForm);
 };
 
-searchForm.onkeypress = function () {
+searchForm.onkeydown = function () {
+  if (canSubmit(searchForm)) {
+    searchForm.submit();
+  }
+};
+
+selectCat.onchange = function () {
   if (canSubmit(searchForm)) {
     searchForm.submit();
   }
@@ -53,6 +60,7 @@ function loadPage(dataArray) {
         <p>${result.pageurl}</p>
         <p>${result.recallId}</p>
         <p>${result.url}</p>
+        <a href="/details/${result.recallId}" target="_blank" ><button>View</button></a>
         `;
 
     resultsDiv.innerHTML += resultContent;

@@ -31,7 +31,6 @@ router.get("/api/search", async (req, res) => {
   const category = req.query.cat || 0;
   const offset = req.query.off || 0;
 
-  console.log("req.query", req.query);
   const searchResults = await API.getSearch(
     base_url,
     searchText,
