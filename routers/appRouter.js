@@ -10,8 +10,9 @@ router.get("/recent", (req, res) => {
   res.render("recent.html");
 });
 
-router.get("/details", (req, res) => {
-  res.render("details.html");
+router.get("/details/:id", async (req, res) => {
+  const id = req.params.id;
+  res.render("details.html", { id });
 });
 
 router.get("/search", (req, res) => {

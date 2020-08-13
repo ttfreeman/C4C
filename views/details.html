@@ -3,11 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Details {{data.recallId}}</title>
   </head>
   <body>
-    <div>Details page</div>
+    <div>Details page {{id}}</div>
     <a href="/">Main Page</a>
-    <script type="text/javascript" src="/index.js"></script>
+    <h2></h2>
+    <div id="details-top"></div>
+    <div id="details-panels"></div>
+    <script type="text/javascript">
+      const id = {{{id}}}
+
+      function loadPage(data) {
+        console.log(data);
+
+        document.getElementsByTagName("h2")[0].innerHTML = data.title
+
+        var topDiv = document.getElementById("details-top")
+        var topContent = `
+        <p>recallId: ${data.recallId}</p>
+        <p>category: ${data.category}</p>
+        <p>date published: ${new Date(data.date_published*1000).toUTCString()}</p>
+        <p>start date: ${new Date(data.start_date*1000).toUTCString()}</p>
+        <p>url: ${data.url}</p>
+        `
+        topDiv.innerHTML = topContent
+
+        data.panels.forEach(panel => {
+          var panelContent = `
+          <h4>${panel.title}</h4>
+          <p>${panel.text}</p>
+          `
+
+          var panelDiv = document.getElementById("details-panels")
+          panelDiv.innerHTML += panelContent
+        });
+      }
+
+      function getDetails() {
+          fetch(`http://localhost:3000/api/details/${id}`)
+            .then(function (response) {
+              if (response.status !== 200) {
+                console.log(
+                  "Looks like there was a problem. Status Code: " +
+                    response.status
+                );
+                return;
+              }
+              // Examine the text in the response
+              response.json().then(function (data) {
+                loadPage(data.data);
+              });
+            })
+            .catch(function (err) {
+              console.log("Fetch Error :-S", err);
+            });
+      }
+      getDetails()
+    </script>
   </body>
 </html>

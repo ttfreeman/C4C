@@ -30,7 +30,7 @@ function loadRecentTable(data) {
   data.forEach((item) => {
     let row = table.insertRow();
     let recallId = row.insertCell(0);
-    recallId.innerHTML = item.recallId;
+    recallId.innerHTML = `<a href="/details/${item.recallId}" target="_blank">${item.recallId}</a>`;
     let title = row.insertCell(1);
     title.innerHTML = item.title;
     let category = row.insertCell(2);
@@ -38,6 +38,6 @@ function loadRecentTable(data) {
     let date_published = row.insertCell(3);
     date_published.innerHTML = item.date_published;
     let url = row.insertCell(4);
-    url.innerHTML = item.url;
+    url.innerHTML = `<a href="/api/details/${item.recallId}" target="_blank">${item.url}</a>`;
   });
 }

@@ -19,7 +19,6 @@ router.get("/api/recent", async (req, res) => {
 router.get("/api/details/:id", async (req, res) => {
   const id = req.params.id;
   const details = await API.getDetails(base_url, id, lang);
-  console.log(details.data);
   res.status(200).send({ data: details.data });
 });
 
@@ -28,10 +27,10 @@ router.get("/api/search", async (req, res) => {
   const searchResults = await API.getSearch(
     base_url,
     searchText,
-    lang
-    // category,
-    // limit,
-    // offset
+    lang,
+    category,
+    limit,
+    offset
   );
   console.log("Search results= ", searchResults.data);
   res.status(200).send({ data: recent.data.results });
