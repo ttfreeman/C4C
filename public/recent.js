@@ -11,8 +11,6 @@ function getRecent() {
         );
         return;
       }
-
-      // Examine the text in the response
       response.json().then(function (data) {
         var selectCat = document.getElementById("select-cat");
         var category = selectCat.options[selectCat.selectedIndex].text;

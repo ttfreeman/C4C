@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Search</title>
   </head>
   <body>
-    <div>Search page</div>
+    <h1>Search page</h1>
     <a href="/">Main Page</a>
-    <script type="text/javascript" src="/index.js"></script>
+    <form action="/api/search" id="search-form">
+      <label for="searchtext">Search text</label>
+      <input type="text" id="searchtext" name="searchtext" />
+      <select id="select-cat">
+        <option value="0">ALL</option>
+        <option value="1">FOOD</option>
+        <option value="2">VEHICLE</option>
+        <option value="3">HEALTH</option>
+        <option value="4">CPS</option>
+      </select>
+    </form>
+    <div id="search-results"></div>
+    <script type="text/javascript" src="/search.js"></script>
   </body>
 </html>

@@ -23,7 +23,15 @@ router.get("/api/details/:id", async (req, res) => {
 });
 
 router.get("/api/search", async (req, res) => {
-  const searchText = "vegetable";
+  const searchText = req.query.search;
+  if (!searchText) {
+    res.status(422).send({ message: "search text must be provided" });
+  }
+  const limit = 10;
+  const category = req.query.cat || 0;
+  const offset = req.query.off || 0;
+
+  console.log("req.query", req.query);
   const searchResults = await API.getSearch(
     base_url,
     searchText,
@@ -32,8 +40,7 @@ router.get("/api/search", async (req, res) => {
     limit,
     offset
   );
-  console.log("Search results= ", searchResults.data);
-  res.status(200).send({ data: recent.data.results });
+  res.status(200).send({ data: searchResults.data.results });
 });
 
 module.exports = router;
