@@ -1,3 +1,35 @@
+.main-box {
+  padding: 20px;
+  margin: auto;
+  width: 50%;
+}
 nav ul {
   list-style: none;
+}
+.main-button {
+  background-color: skyblue;
+  margin: 10px 0;
+  padding: 5px;
+  width: 150px;
+}
+.toggle-content {
+  display: none;
+}
+
+.toggle-content.is-visible {
+  display: table-header-group;
+}
+
+table {
+  margin: 20px;
+}
+th,
+td {
+  padding: 10px;
+}
+
+/* details */
+.details-div {
+  margin: auto;
+  width: 70%;
 }

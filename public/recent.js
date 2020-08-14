@@ -23,6 +23,9 @@ function getRecent() {
 }
 
 function loadRecentTable(data) {
+  const tableHead = document.getElementById("table-head");
+  show(tableHead);
+
   const table = document.getElementById("table-body");
   table.innerHTML = "";
   data.forEach((item) => {
@@ -39,3 +42,9 @@ function loadRecentTable(data) {
     url.innerHTML = `<a href="/api/details/${item.recallId}" target="_blank">${item.url}</a>`;
   });
 }
+
+var show = function (elem) {
+  if (!elem.classList.contains("is-visible")) {
+    elem.classList.add("is-visible");
+  }
+};

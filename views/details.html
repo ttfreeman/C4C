@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/index.css" />
     <title>Details {{data.recallId}}</title>
   </head>
   <body>
-    <div>Details page {{id}}</div>
-    <a href="/">Main Page</a>
-    <h2></h2>
-    <div id="details-top"></div>
-    <div id="details-panels"></div>
+    <div class="details-div">
+      <a href="/"><button class="main-button">Main Page</button></a>
+      <h2></h2>
+      <div id="details-top"></div>
+      <div id="details-panels"></div>
+    </div>
+
     <script type="text/javascript">
       const id = {{{id}}}
 
