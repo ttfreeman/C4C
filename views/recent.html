@@ -8,28 +8,32 @@
     <title>Recent</title>
   </head>
   <body>
-    <h1>Recent page</h1>
-    <select id="select-cat">
-      <option value="0">ALL</option>
-      <option value="1">FOOD</option>
-      <option value="2">VEHICLE</option>
-      <option value="3">HEALTH</option>
-      <option value="4">CPS</option>
-    </select>
-    <button id="get-recent">Get Recent Recalls</button>
-    <a href="/">Main Page</a>
-    <table>
-      <thead id="table-head" class="toggle-content">
-        <tr>
-          <th>recallId</th>
-          <th>title</th>
-          <th>category</th>
-          <th>date published</th>
-          <th>url</th>
-        </tr>
-      </thead>
-      <tbody id="table-body"></tbody>
-    </table>
+    <div class="main-div">
+      <a href="/"><button class="main-button">Main Page</button></a>
+      <h2>Recent Recalls</h2>
+      <select id="select-cat" class="give-padding">
+        <option value="0">ALL</option>
+        <option value="1">FOOD</option>
+        <option value="2">VEHICLE</option>
+        <option value="3">HEALTH</option>
+        <option value="4">CPS</option>
+      </select>
+      <button id="get-recent" class="give-padding">Get Recent Recalls</button>
+
+      <table>
+        <thead id="table-head" class="toggle-content">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Date Published</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
     <script type="text/javascript" src="/recent.js"></script>
   </body>
 </html>

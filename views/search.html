@@ -8,20 +8,29 @@
     <title>Search</title>
   </head>
   <body>
-    <h1>Search page</h1>
-    <a href="/">Main Page</a>
-    <form action="/api/search" id="search-form">
-      <label for="searchtext">Search text</label>
-      <input type="text" id="searchtext" name="searchtext" />
-      <select id="select-cat">
-        <option value="0">ALL</option>
-        <option value="1">FOOD</option>
-        <option value="2">VEHICLE</option>
-        <option value="3">HEALTH</option>
-        <option value="4">CPS</option>
-      </select>
-    </form>
-    <div id="search-results"></div>
+    <div class="main-div">
+      <a href="/"><button class="main-button">Main Page</button></a>
+      <h2>Search Recalls</h2>
+      <form action="/api/search" id="search-form">
+        <!-- <label for="searchtext" class="give-padding">Search text</label> -->
+        <input
+          type="text"
+          id="searchtext"
+          name="searchtext"
+          class="give-padding"
+          placeholder="search text"
+        />
+        <select id="select-cat" class="give-padding">
+          <option value="0">ALL</option>
+          <option value="1">FOOD</option>
+          <option value="2">VEHICLE</option>
+          <option value="3">HEALTH</option>
+          <option value="4">CPS</option>
+        </select>
+      </form>
+      <div id="search-results"></div>
+    </div>
+
     <script type="text/javascript" src="/search.js"></script>
   </body>
 </html>

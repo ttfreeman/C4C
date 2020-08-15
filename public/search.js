@@ -54,13 +54,13 @@ function loadPage(dataArray) {
   resultsDiv.innerHTML = "";
   dataArray.forEach((result) => {
     var resultContent = `
+    <div class="search-panel">
         <h4>${result.title}</h4>
-        <p>${result.category}</p>
         <p>${result.department}</p>
         <p>${result.pageurl}</p>
-        <p>${result.recallId}</p>
         <p>${result.url}</p>
-        <a href="/details/${result.recallId}" target="_blank" ><button>View</button></a>
+        <a href="/details/${result.recallId}" target="_blank" ><button class="give-padding search-button">View</button></a>
+    </div>
         `;
 
     resultsDiv.innerHTML += resultContent;
