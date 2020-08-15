@@ -27,7 +27,7 @@ router.get("/api/search", async (req, res) => {
   if (!searchText) {
     res.status(422).send({ message: "search text must be provided" });
   }
-  const limit = 10;
+  const limit = req.query.lim || 10;
   const category = req.query.cat || 0;
   const offset = req.query.off || 0;
 
@@ -39,7 +39,9 @@ router.get("/api/search", async (req, res) => {
     limit,
     offset
   );
-  res.status(200).send({ data: searchResults.data.results });
+  const nextPageToken = Number(offset) + Number(limit);
+
+  res.status(200).send({ data: searchResults.data.results, nextPageToken });
 });
 
 module.exports = router;

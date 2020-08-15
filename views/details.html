@@ -11,7 +11,7 @@
     <div class="main-div">
       <a href="/"><button class="main-button">Main Page</button></a>
       <h2></h2>
-      <div id="details-top"></div>
+      <div id="details-top" class="search-panel"></div>
       <div id="details-panels"></div>
     </div>
 
@@ -25,22 +25,35 @@
 
         var topDiv = document.getElementById("details-top")
         var topContent = `
-        <p>recallId: ${data.recallId}</p>
-        <p>category: ${data.category}</p>
-        <p>date published: ${new Date(data.date_published*1000).toUTCString()}</p>
-        <p>start date: ${new Date(data.start_date*1000).toUTCString()}</p>
-        <p>url: ${data.url}</p>
+        <p><strong>Recall ID: </strong>${data.recallId}</p>
+        <p><strong>Date published: </strong>${new Date(data.date_published*1000).toUTCString().split(' ').slice(0,4).join(' ')}</p>
+        <p><strong>Start date: </strong>${new Date(data.start_date*1000).toUTCString().split(' ').slice(0,4).join(' ')}</p>
+        <a href=${data.url} target="_blank"><button class="search-button">URL</button></a>
         `
         topDiv.innerHTML = topContent
 
         data.panels.forEach(panel => {
           var panelContent = `
-          <h4>${panel.title}</h4>
-          <p>${panel.text}</p>
+          <div class="search-panel">
+            <h4>${panel.title}</h4>
+            <p>${panel.text}</p>
+          </div>
           `
 
           var panelDiv = document.getElementById("details-panels")
-          panelDiv.innerHTML += panelContent
+          if (panel.title==='Images') {
+            panel.data.forEach(image=>{
+              var imagesContent = `
+                <div class="search-panel">
+                  <h4>${image.title}</h4>
+                  <img src="http://healthycanadians.gc.ca${image.fullUrl}" alt="recall image" >
+                </div>
+                `
+              panelDiv.innerHTML += imagesContent
+            })
+          } else {
+            panelDiv.innerHTML += panelContent
+          }
         });
       }
 

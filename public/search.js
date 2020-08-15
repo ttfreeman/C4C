@@ -1,7 +1,11 @@
+var limit = 5;
 var searchForm = document.getElementById("search-form");
 var selectCat = document.getElementById("select-cat");
 
-function canSubmit(form) {
+function canSubmit(form, offset) {
+  if (!offset) {
+    offset = 0;
+  }
   if (
     searchForm.searchtext.value != null &&
     searchForm.searchtext.value != ""
@@ -9,7 +13,7 @@ function canSubmit(form) {
     var search = searchForm.searchtext.value;
     var category = selectCat.options[selectCat.selectedIndex].value;
 
-    var url = `http://localhost:3000/api/search?search=${search}&cat=${category}`;
+    var url = `http://localhost:3000/api/search?search=${search}&cat=${category}&off=${offset}&lim=${limit}`;
     getSearch(url);
   }
   return false;
@@ -41,7 +45,10 @@ function getSearch(url) {
         return;
       }
       response.json().then(function (data) {
-        loadPage(data.data);
+        window.nextPageToken = data.nextPageToken;
+        if (data.data.length > 0) {
+          loadPage(data.data);
+        }
       });
     })
     .catch(function (err) {
@@ -65,4 +72,31 @@ function loadPage(dataArray) {
 
     resultsDiv.innerHTML += resultContent;
   });
+  var pagDiv = `
+  <div class="relative">
+    <button id="more-results" class="main-button" onclick="getPrev()">... <<<</button>
+    <button id="more-results" class="main-button" onclick="getNext()">>>> ...</button>
+    <p class="search-page give-padding">Page ${window.nextPageToken / limit}
+  </div>
+  `;
+  resultsDiv.innerHTML += pagDiv;
+}
+
+function getPrev() {
+  var offset = Number(window.nextPageToken) - limit * 2;
+  if (offset < 0) {
+    offset = 0;
+  }
+  window.nextPageToken = offset;
+  if (canSubmit(searchForm, offset)) {
+    searchForm.submit();
+  }
+}
+
+function getNext() {
+  var offset = Number(window.nextPageToken);
+  window.nextPageToken = offset;
+  if (canSubmit(searchForm, offset)) {
+    searchForm.submit();
+  }
 }
