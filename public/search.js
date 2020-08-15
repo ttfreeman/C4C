@@ -23,7 +23,7 @@ searchForm.onsubmit = function () {
   return canSubmit(searchForm);
 };
 
-searchForm.onkeydown = function () {
+searchForm.onkeyup = function () {
   if (canSubmit(searchForm)) {
     searchForm.submit();
   }
@@ -74,8 +74,8 @@ function loadPage(dataArray) {
   });
   var pagDiv = `
   <div class="relative">
-    <button id="more-results" class="main-button" onclick="getPrev()">... <<<</button>
-    <button id="more-results" class="main-button" onclick="getNext()">>>> ...</button>
+    <button id="more-results" class="main-button" onclick="getPrev()"><<<</button>
+    <button id="more-results" class="main-button" onclick="getNext()">>>></button>
     <p class="search-page give-padding">Page ${window.nextPageToken / limit}
   </div>
   `;
@@ -83,13 +83,11 @@ function loadPage(dataArray) {
 }
 
 function getPrev() {
-  var offset = Number(window.nextPageToken) - limit * 2;
-  if (offset < 0) {
-    offset = 0;
-  }
-  window.nextPageToken = offset;
-  if (canSubmit(searchForm, offset)) {
-    searchForm.submit();
+  if (window.nextPageToken > limit) {
+    var offset = Number(window.nextPageToken) - limit * 2;
+    if (canSubmit(searchForm, offset)) {
+      searchForm.submit();
+    }
   }
 }
 
