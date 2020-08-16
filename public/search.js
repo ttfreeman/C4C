@@ -46,9 +46,7 @@ function getSearch(url) {
       }
       response.json().then(function (data) {
         window.nextPageToken = data.nextPageToken;
-        if (data.data.length > 0) {
-          loadPage(data.data);
-        }
+        loadPage(data.data);
       });
     })
     .catch(function (err) {
