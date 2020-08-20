@@ -27,10 +27,12 @@
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "lodash": "^4.17.19",
+    "puppeteer": "^5.2.1",
     "shuffle-seed": "^1.1.6"
   },
   "devDependencies": {
     "jest": "^26.1.0",
-    "nodemon": "2.0.4"
+    "nodemon": "2.0.4",
+    "supertest": "^4.0.2"
   }
 }
